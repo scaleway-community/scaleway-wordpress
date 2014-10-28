@@ -13,6 +13,7 @@ wordpress_patch_image() {
     # Install Wordpress
     do_in_target "wget -qO latest.tar.gz http://wordpress.org/latest.tar.gz"
     do_in_target "tar -xzvf latest.tar.gz"
+    do_in_target "rm -rf /var/www"
     do_in_target "mv wordpress /var/www"
     do_in_target "cp /var/www/wp-config-sample.php /var/www/wp-config.php"
     do_in_target "rm -f latest.tar.gz"
@@ -21,8 +22,8 @@ wordpress_patch_image() {
     patch_target app-wordpress/patches
 
     # Configures nginx
-    do_in_target "ln -sf /etc/nginx/site-available/wordpress /etc/nginx/site-enabled/wordpress"
-    do_in_target "rm -f /etc/nginx/site-enabled/default"
+    do_in_target "ln -sf /etc/nginx/sites-available/wordpress /etc/nginx/sites-enabled/wordpress"
+    do_in_target "rm -f /etc/nginx/sites-enabled/default"
 
 }
 patch_image() {
