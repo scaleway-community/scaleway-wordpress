@@ -21,11 +21,11 @@ EOF
     echo "CREATE DATABASE $dbname" | mysql -u $username -p$password
     killall mysqld
     rm -f /tmp/recover_root_mysql.ini
-    server mysql start
+    service mysql start
 
-    # Configure db for wordpress
-    sed -i "s/define('DB_NAME', 'database_name_here');/define('DB_NAME', '$dbname');/" /var/www/wp-config.php
-    sed -i "s/define('DB_USER', 'username_here');/define('DB_USER', '$username');/" /var/www/wp-config.php
-    sed -i "s/define('DB_PASSWORD', 'password_here');/define('DB_PASSWORD', '$password');/" /var/www/wp-config.php
+    # Configure wordpress database
+    sed -i "s/define('DB_NAME',.*/define('DB_NAME', '$dbname');/" /var/www/wp-config.php
+    sed -i "s/define('DB_USER',.*/define('DB_USER', '$username');/" /var/www/wp-config.php
+    sed -i "s/define('DB_PASSWORD',.*/define('DB_PASSWORD', '$password');/" /var/www/wp-config.php
 fi
 
