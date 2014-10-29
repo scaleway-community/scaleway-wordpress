@@ -10,6 +10,9 @@ wordpress_patch_image() {
     # Inherits parent image
     ubuntu_utopic_patch_image
 
+    # Uninstall apache
+    do_in_target "apt-get -yq remove apache2"
+
     # Install Wordpress
     do_in_target "wget -qO latest.tar.gz http://wordpress.org/latest.tar.gz"
     do_in_target "tar -xzvf latest.tar.gz"
