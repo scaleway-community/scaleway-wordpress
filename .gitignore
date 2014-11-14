@@ -1,12 +1,10 @@
-rootfs-target/
 *~
 .*~
 *#
 .#*
-rootfs-*.tar.gz
 source.tar.gz
 source.tar.xz
 sd*.raw*
-rootfs-target.device/
+rootfs*
 */*/*.tar
 */*/*.built
