@@ -1,3 +1,4 @@
+## -*- docker-image-name: "armbuild/ocs-app-wordpress:utopic" -*-
 FROM armbuild/ocs-ubuntu:utopic
 
 # Prepare rootfs for image-builder
