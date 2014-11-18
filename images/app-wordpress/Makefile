@@ -67,6 +67,7 @@ rootfs.tar: rootfs
 
 
 rootfs.sqsh: rootfs
+	rm -f rootfs.sqsh
 	mksquashfs rootfs rootfs.sqsh -noI -noD -noF -noX
 
 
