@@ -16,9 +16,9 @@ build: rootfs.tar
 release:
 	docker tag  $(NAME):$(VERSION) $(NAME):$(shell date +%Y-%m-%d)
 	docker push $(NAME):$(VERSION) $(NAME):$(shell date +%Y-%m-%d)
-	if [ "x$(IS_LATEST)" = "x1" ]; then              \
-	    docker tag $(NAME):$(VERSION) $(NAME):latest \
-	    docker push $(NAME):latest                   \
+	if [ "x$(IS_LATEST)" = "x1" ]; then               \
+	    docker tag $(NAME):$(VERSION) $(NAME):latest; \
+	    docker push $(NAME):latest;                   \
 	fi
 
 
@@ -39,7 +39,8 @@ publish_on_s3.sqsh: rootfs.sqsh
 
 clean:
 	docker rmi $(NAME):$(VERSION) || true
-	rm -f rootfs.tar .??*.built || true
+	rm -f rootfs.tar rootfs.sqsh export.tar .??*.built || true
+	rm -rf rootfs || true
 
 
 shell:  .docker-container.built
