@@ -14,8 +14,8 @@ build: rootfs.tar
 
 
 release:
-	docker tag $(NAME):$(VERSION) $(NAME):$(shell date +%Y-%m-%d)
-	docker push $(NAME):$(VERSION)
+	docker tag  $(NAME):$(VERSION) $(NAME):$(shell date +%Y-%m-%d)
+	docker push $(NAME):$(VERSION) $(NAME):$(shell date +%Y-%m-%d)
 	if [ "x$(IS_LATEST)" = "x1" ]; then              \
 	    docker tag $(NAME):$(VERSION) $(NAME):latest \
 	    docker push $(NAME):latest                   \
