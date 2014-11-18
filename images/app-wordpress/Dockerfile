@@ -5,18 +5,18 @@ FROM armbuild/ocs-ubuntu:utopic
 RUN /usr/local/sbin/builder-enter
 
 # Install packages
-RUN apt-get -q update &&
-    apt-get -q upgrade &&
+RUN apt-get -q update &&  \
+    apt-get -q upgrade && \
     apt-get install -y -q \
-	mysql-server \
-	php5 \
-	php5-cli \
-	php5-fpm \
-	php5-gd \
-	php5-mcrypt \
-	php5-mysql \
-	pwgen \
-        nginx \
+	mysql-server      \
+	php5              \
+	php5-cli          \
+	php5-fpm          \
+	php5-gd           \
+	php5-mcrypt       \
+	php5-mysql        \
+	pwgen             \
+        nginx             \
     && apt-get clean
 
 # Uninstall apache
