@@ -1,4 +1,4 @@
-NAME =      armbuild/ocs-app-wordpress
+NAME =      ocs-app-wordpress
 VERSION =   utopic
 IS_LATEST = 1
 
