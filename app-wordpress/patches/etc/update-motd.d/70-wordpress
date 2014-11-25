@@ -1,0 +1,17 @@
+#!/bin/bash
+
+cat <<EOF
+
+Wordpress $(cat /var/www/wp-includes/version.php | grep wp_version\ = | cut -d\' -f2) is installed in /var/www.
+EOF
+
+# FIXME: check if wordpress is installed
+cat <<EOF
+MySQL is configured for user root with password $(cat /root/.my.cnf | grep password | awk '{print $3}').
+To continue the installation, open http://$(/usr/local/bin/oc-metadata PUBLIC_IP_ADDRESS)/wp-admin/install.php in your browser.
+EOF
+
+cat <<EOF
+You can hide this message on the next connection by deleting the $0 file.
+
+EOF
