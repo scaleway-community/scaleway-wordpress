@@ -38,7 +38,8 @@ RUN ln -sf /etc/nginx/sites-available/wordpress /etc/nginx/sites-enabled/wordpre
 # - Add ocs-scripts
 # - Tweaks rootfs so it matches Online Labs infrastructure
 # RUN curl https://raw.githubusercontent.com/online-labs/ocs-scripts/master/upgrade_root.bash | bash
-ADD ./patches/ /
+ADD ./patches/etc/ /etc/
+ADD ./patches/usr/local/ /usr/local/
 
 # Clean rootfs from image-builder
 RUN /usr/local/sbin/builder-leave
