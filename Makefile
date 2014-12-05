@@ -1,9 +1,15 @@
-NAME =		ocs-app-wordpress
-VERSION =	utopic
-IS_LATEST =	1
-DESCRIPTION =	Wordpress 4.0
-TITLE =		Wordpress
-DOC_URL =	https://doc.cloud.online.net/applications/wordpress.html
-SOURCE_URL =	https://github.com/online-labs/image-builder/tree/master/app-wordpress
+DOCKER_NAMESPACE =	armbuild/
+NAME =			ocs-app-wordpress
+VERSION =		utopic
+VERSION_ALIASES =	14.10 latest
+TITLE =			Wordpress 4.0
+DESCRIPTION =		Wordpress 4.0 with MySQL
+SOURCE_URL =		https://github.com/online-labs/image-app-wordpress
 
-include ../docker-rules.mk
+
+## Image tools  (https://github.com/online-labs/image-tools)
+all:	docker-rules.mk
+docker-rules.mk:
+	wget -qO - http://j.mp/image-tools | bash
+-include docker-rules.mk
+## Below you can add custom makefile commands and overrides
