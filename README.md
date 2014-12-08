@@ -7,6 +7,12 @@ This image is built using [Image Tools](https://github.com/online-labs/image-too
 
 ---
 
+**This image is meant to be used on a C1 server.**
+
+We use the Docker's building system and convert it at the end to a disk image that will boot on real servers without Docker. Note that the image is still runnable as a Docker container for debug or for inheritance.**
+
+[More info](https://github.com/online-labs/image-tools#docker-based-builder)
+
 Commands
 --------
 
