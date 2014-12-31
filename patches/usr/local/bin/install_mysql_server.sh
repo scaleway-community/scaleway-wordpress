@@ -15,7 +15,7 @@ user = $username
 password = $password
 EOF
 
-    mysql -e "CREATE DATABASE $dbname"
+    echo "CREATE DATABASE $dbname" | mysql -u $username -p$password
 
     # Configure wordpress database
     sed -i "s/define('DB_NAME',.*/define('DB_NAME', '$dbname');/" /var/www/wp-config.php
