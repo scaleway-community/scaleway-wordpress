@@ -10,7 +10,6 @@ RUN /usr/local/sbin/builder-enter
 RUN apt-get -q update &&  \
     apt-get -q upgrade && \
     apt-get install -y -q \
-	mysql-server      \
 	php5              \
 	php5-cli          \
 	php5-fpm          \
