@@ -6,7 +6,9 @@ if [ ! -f /root/.my.cnf ]; then
     dbname="wordpress"
     username="root"
     
-    /usr/bin/mysqladmin -u root password $password
+    echo mysql-server mysql-server/root_password password $password | debconf-set-selections
+    echo mysql-server mysql-server/root_password_again password $password | debconf-set-selections
+    apt-get install -y -q mysql-server      \
     cat <<EOF > /root/.my.cnf
 [client]
 user = $username
