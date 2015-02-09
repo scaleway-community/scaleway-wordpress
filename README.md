@@ -1,4 +1,4 @@
-Official Ghost image on Online Labs
+Official Wordpress image on Online Labs
 ====================================
 
 Scripts to build the official Wordpress image on Online Labs
