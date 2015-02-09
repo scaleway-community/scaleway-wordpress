@@ -23,4 +23,5 @@ EOF
     sed -i "s/define('DB_USER',.*/define('DB_USER', '$username');/" /var/www/wp-config.php
     sed -i "s/define('DB_PASSWORD',.*/define('DB_PASSWORD', '$password');/" /var/www/wp-config.php
     sed -i "/WP_DEBUG/a\\define('FS_METHOD', 'direct');" /var/www/wp-config.php
+    chown -R www-data /var/www/
 fi
