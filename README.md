@@ -1,4 +1,4 @@
-Official Wordpress image on Online Labs
+Official Wordpress image on Online Labs [![Build Status](https://travis-ci.org/online-labs/image-app-wordpress.svg?branch=master)](https://travis-ci.org/online-labs/image-app-wordpress)
 ====================================
 
 Scripts to build the official Wordpress image on Online Labs
