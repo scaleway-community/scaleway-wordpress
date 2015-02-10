@@ -23,3 +23,10 @@ Build and write the image to /dev/nbd1 (see [documentation](https://doc.cloud.on
     $ make install
 
 Full list of commands available at: [online-labs/image-tools](https://github.com/online-labs/image-tools/tree/master#commands)
+
+Test
+----
+
+On a running instance:
+
+    $ SCRIPT=$(mktemp); curl -s https://raw.githubusercontent.com/online-labs/image-app-wordpress/master/test.bash > $SCRIPT; bash $SCRIPT
