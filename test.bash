@@ -1,4 +1,6 @@
 #!/bin/bash
+# Run this script
+# SCRIPT=$(mktemp); curl -s https://raw.githubusercontent.com/online-labs/image-app-wordpress/master/test.bash > $SCRIPT; bash $SCRIPT
 
 which shunit2 >/dev/null || (apt-get -qq update; apt-get install -yq shunit2)
 
