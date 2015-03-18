@@ -23,7 +23,7 @@ RUN apt-get -q update &&  \
 # Uninstall apache
 RUN apt-get -yq remove apache2
 
-# Install Wordpress
+# Install WordPress
 RUN wget -qO latest.tar.gz http://wordpress.org/latest.tar.gz && \
     tar -xzf latest.tar.gz && \
     rm -rf /var/www && \

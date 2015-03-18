@@ -2,8 +2,8 @@ DOCKER_NAMESPACE =	armbuild/
 NAME =			ocs-app-wordpress
 VERSION =		latest
 VERSION_ALIASES =	14.10 latest utopic 4.1 4
-TITLE =			Wordpress 4.1
-DESCRIPTION =		Wordpress 4.1 with MySQL
+TITLE =			WordPress 4.1
+DESCRIPTION =		WordPress 4.1 with MySQL
 SOURCE_URL =		https://github.com/online-labs/image-app-wordpress
 
 

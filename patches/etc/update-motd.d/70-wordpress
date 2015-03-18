@@ -2,7 +2,7 @@
 
 cat <<EOF
 
-Wordpress $(cat /var/www/wp-includes/version.php | grep wp_version\ = | cut -d\' -f2) is installed in /var/www.
+WordPress $(cat /var/www/wp-includes/version.php | grep wp_version\ = | cut -d\' -f2) is installed in /var/www.
 EOF
 
 if [ -f /root/my.cnf ]; then

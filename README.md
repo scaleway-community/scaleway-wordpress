@@ -1,7 +1,7 @@
-Official Wordpress image on Online Labs [![Build Status](https://travis-ci.org/online-labs/image-app-wordpress.svg?branch=master)](https://travis-ci.org/online-labs/image-app-wordpress)
-====================================
+Official WordPress image on Online Labs [![Build Status](https://travis-ci.org/online-labs/image-app-wordpress.svg?branch=master)](https://travis-ci.org/online-labs/image-app-wordpress)
+=======================================
 
-Scripts to build the official Wordpress image on Online Labs
+Scripts to build the official WordPress image on Online Labs
 
 This image is built using [Image Tools](https://github.com/online-labs/image-tools) and depends on the official [Ubuntu](https://github.com/online-labs/image-ubuntu) image.
 
