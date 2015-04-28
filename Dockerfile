@@ -8,7 +8,7 @@ RUN /usr/local/sbin/builder-enter
 
 # Install packages
 RUN apt-get -q update &&  \
-    apt-get -q upgrade && \
+    apt-get -q -y upgrade && \
     apt-get install -y -q \
 	php5              \
 	php5-cli          \
