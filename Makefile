@@ -1,9 +1,9 @@
 DOCKER_NAMESPACE =	armbuild/
 NAME =			scw-app-wordpress
 VERSION =		latest
-VERSION_ALIASES =	
-TITLE =			WordPress 4.1
-DESCRIPTION =		WordPress 4.1 with MySQL
+VERSION_ALIASES =	4.0.2 4.0 4
+TITLE =			WordPress
+DESCRIPTION =		WordPresswith MySQL
 SOURCE_URL =		https://github.com/scaleway/image-app-wordpress
 
 

@@ -25,13 +25,16 @@ RUN apt-get -q update     \
 RUN apt-get -yq remove apache2
 
 
+ENV WORDPRESS_VERSION 4.2.2
+
+
 # Install WordPress
-RUN wget -qO latest.tar.gz http://wordpress.org/latest.tar.gz && \
-    tar -xzf latest.tar.gz && \
+RUN wget -qO wordpress.tar.gz https://wordpress.org/wordpress-$WORDPRESS_VERSION.tar.gz && \
+    tar -xzf wordpress.tar.gz && \
     rm -rf /var/www && \
     mv wordpress /var/www && \
     cp /var/www/wp-config-sample.php /var/www/wp-config.php && \
-    rm -f latest.tar.gz
+    rm -f wordpress.tar.gz
 
 
 # Configure NginX
