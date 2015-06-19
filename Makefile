@@ -1,7 +1,7 @@
 DOCKER_NAMESPACE =	armbuild/
 NAME =			scw-app-wordpress
 VERSION =		latest
-VERSION_ALIASES =	14.10 latest utopic 4.1 4
+VERSION_ALIASES =	
 TITLE =			WordPress 4.1
 DESCRIPTION =		WordPress 4.1 with MySQL
 SOURCE_URL =		https://github.com/scaleway/image-app-wordpress
