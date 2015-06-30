@@ -24,6 +24,10 @@ We use the Docker's building system and convert it at the end to a disk image th
 
 ---
 
+## How to connect to your C1 server
+
+See the [documentation](https://www.scaleway.com/docs/create-and-connect-to-your-server/) to connect your to your C1 server.
+
 ## Install
 
 Build and write the image to /dev/nbd1 (see [documentation](https://www.scaleway.com/docs/create_an_image_with_docker))
