@@ -10,6 +10,7 @@ RUN /usr/local/sbin/builder-enter
 RUN apt-get -q update     \
  && apt-get -q -y upgrade \
  && apt-get install -y -q \
+        postfix           \
 	php5              \
 	php5-cli          \
 	php5-fpm          \
