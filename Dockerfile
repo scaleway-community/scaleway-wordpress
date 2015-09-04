@@ -2,7 +2,6 @@
 FROM armbuild/scw-distrib-ubuntu:trusty
 MAINTAINER Scaleway <opensource@scaleway.com> (@scaleway)
 
-
 # Prepare rootfs for image-builder
 RUN /usr/local/sbin/builder-enter
 
@@ -26,26 +25,25 @@ RUN apt-get -q update     \
 RUN apt-get -yq remove apache2
 
 
-ENV WORDPRESS_VERSION 4.2.2
+ENV WORDPRESS_VERSION 4.3
 
+# Patch rootfs
+ADD ./patches/etc/ /etc/
+ADD ./patches/usr/local/ /usr/local/
 
 # Install WordPress
 RUN wget -qO wordpress.tar.gz https://wordpress.org/wordpress-$WORDPRESS_VERSION.tar.gz && \
     tar -xzf wordpress.tar.gz && \
     rm -rf /var/www && \
     mv wordpress /var/www && \
-    cp /var/www/wp-config-sample.php /var/www/wp-config.php && \
+    rm /var/www/wp-config-sample.php && \
+    /usr/local/bin/wp_config.sh && \
+    rm -f /usr/local/bin/wp_config.sh && \
     rm -f wordpress.tar.gz
-
 
 # Configure NginX
 RUN ln -sf /etc/nginx/sites-available/wordpress /etc/nginx/sites-enabled/wordpress && \
     rm -f /etc/nginx/sites-enabled/default
-
-
-# Patch rootfs
-ADD ./patches/etc/ /etc/
-ADD ./patches/usr/local/ /usr/local/
 
 
 # Clean rootfs from image-builder
