@@ -1,22 +1,22 @@
 #!/bin/bash
 
-cat <<EOF
+METADATA=$(oc-metadata --cached)
 
-WordPress $(cat /var/www/wp-includes/version.php | grep wp_version\ = | cut -d\' -f2) is installed in /var/www.
-EOF
+metadata() {
+    key=$1
+    echo "$METADATA" | grep "^$key=" | cut -d= -f2 | sed "s/^['\"]//;s/['\"]$//"
+}
 
-if [ -f /root/my.cnf ]; then
-    cat <<EOF
-MySQL is configured for user root with password $(cat /root/.my.cnf | grep password | awk '{print $3}').
-To continue the installation, open http://$(/usr/local/bin/oc-metadata PUBLIC_IP_ADDRESS)/wp-admin/install.php in your browser.
-EOF
-else
-    cat <<EOF
-MySQL is installing in background, come back in a few seconds.
-EOF
-fi
+PUBLIC_IP=$(metadata PUBLIC_IP_ADDRESS)
 
 cat <<EOF
-You can hide this message on the next connection by deleting the $0 file.
-
+Hi Cloud Rider,
+Welcome to the WordPress image!
+Redmine is installed in /var/www.
+Log into WordPress at http://${PUBLIC_IP}/.
+MySQL is configured for user root with password {mysql_root_password}.
+Your website configuration lies at:
+- /etc/apache2/sites-available/000-default.conf
+Enjoy!
 EOF
+

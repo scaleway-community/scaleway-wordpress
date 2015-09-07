@@ -1,0 +1,16 @@
+Hi Cloud Rider,
+Welcome to the WordPress image!
+
+WordPress is installed in /var/www.
+Log into Redmine at http://your-ip/. 
+
+MySQL is configured for user root with password {mysql_root_password}.
+
+Your website configuration lies at:
+- /etc/apache2/sites-available/wordpress
+Enjoy!
+
+Useful links:
+- https://github.com/scaleway/image-app-wordpress
+
+Enjoy!
