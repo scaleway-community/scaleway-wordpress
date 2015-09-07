@@ -25,11 +25,15 @@ RUN apt-get -q update     \
 	nginx             \
  && apt-get clean
 
-
 # Uninstall apache
 RUN apt-get -yq remove apache2
 
 ENV WORDPRESS_VERSION 4.3
+
+# Patch rootfs
+ADD ./patches/root/ /root/
+ADD ./patches/etc/ /etc/
+ADD ./patches/usr/local/ /usr/local/
 
 # Install WordPress
 RUN wget -qO wordpress.tar.gz https://wordpress.org/wordpress-$WORDPRESS_VERSION.tar.gz && \
@@ -45,16 +49,9 @@ RUN wget -qO wordpress.tar.gz https://wordpress.org/wordpress-$WORDPRESS_VERSION
 RUN ln -sf /etc/nginx/sites-available/000-default.conf /etc/nginx/sites-enabled/000-default.conf && \
     rm -f /etc/nginx/sites-enabled/default
 
-
-# Patch rootfs
-ADD ./patches/root/ /root/
-ADD ./patches/etc/ /etc/
-ADD ./patches/usr/local/ /usr/local/
-
 RUN /etc/init.d/mysql start \
   && mysql -u root -e "CREATE DATABASE wordpress CHARACTER SET utf8;" \
   && /etc/init.d/mysql stop
-
 
 # Clean rootfs from image-builder
 RUN /usr/local/sbin/builder-leave
