@@ -40,7 +40,7 @@ RUN wget -qO wordpress.tar.gz https://wordpress.org/wordpress-$WORDPRESS_VERSION
     tar -xzf wordpress.tar.gz && \
     rm -rf /var/www && \
     mv wordpress /var/www && \
-    cp /var/www/wp-config-sample.php /var/www/wp-config.php && \
+    rm -f /var/www/wp-config-sample.php && \
     /usr/local/bin/wp_config.sh && \
     rm -f /usr/local/bin/wp_config.sh && \
     rm -f wordpress.tar.gz
