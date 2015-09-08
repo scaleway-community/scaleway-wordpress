@@ -24,11 +24,18 @@ sed -i "s/mydestination = .*/mydestination = $(/usr/local/bin/oc-metadata --cach
 sed -i "s/myhostname = .*/myhostname = $(/usr/local/bin/oc-metadata --cached ID).pub.cloud.scaleway.com/g" /etc/postfix/main.cf
 sed -i "s/inet_interfaces = .*/inet_interfaces = localhost/g" /etc/postfix/main.cf
 
+postfix -c /etc/postfix/ set-permissions
+chown -R root:postdrop /usr/sbin/postqueue
+chown -R root:postdrop /usr/sbin/postdrop
+chmod g+s /usr/sbin/postqueue /usr/sbin/postdrop
+/etc/initd.d/postfix start
+
 # Let's install MySQL
 chmod 1777 /tmp
+dpkg-reconfigure mysql-server-5.5
 /etc/init.d/mysql start
 mysqladmin -u root password $MYSQL_ROOT_PASSWORD
 
 # this service is only needed on the first boot so we remove it here.
-rm -f /etc/init/init-mysql.conf
-rm -f /usr/local/sbin/oc-init-php-mysql
+rm -f /etc/init/init-wordpress.conf
+rm -f /usr/local/sbin/oc-init-wordpress

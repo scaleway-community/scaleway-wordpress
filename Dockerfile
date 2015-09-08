@@ -14,7 +14,7 @@ RUN apt-get -q update     \
  && apt-get -q -y upgrade \
  && apt-get install -y -q \
 	mailutils         \
-	mysql-server      \
+	mysql-server-5.5  \
 	php5              \
 	php5-cli          \
 	php5-fpm          \
@@ -50,8 +50,8 @@ RUN ln -sf /etc/nginx/sites-available/000-default.conf /etc/nginx/sites-enabled/
     rm -f /etc/nginx/sites-enabled/default
 
 RUN /etc/init.d/mysql start \
-  && mysql -u root -e "CREATE DATABASE wordpress CHARACTER SET utf8;" \
-  && /etc/init.d/mysql stop
+  && mysql -u root -e "CREATE DATABASE wordpress;" \
+  && killall mysqld
 
 # Clean rootfs from image-builder
 RUN /usr/local/sbin/builder-leave
