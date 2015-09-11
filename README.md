@@ -1,6 +1,6 @@
 # WordPress image on Scaleway
 
-[![Travis](https://img.shields.io/travis/scaleway/image-app-wordpress.svg)](https://travis-ci.org/scaleway/image-app-wordpress)
+[![Travis](https://img.shields.io/travis/scaleway-community/scaleway-wordpress.svg)](https://travis-ci.org/scaleway-community/scaleway-wordpress)
 [![Scaleway ImageHub](https://img.shields.io/badge/ImageHub-view-ff69b4.svg)](https://hub.scaleway.com/wordpress.html)
 [![Run on Scaleway](https://img.shields.io/badge/Scaleway-run-69b4ff.svg)](https://cloud.scaleway.com/#/servers/new?image=9d6d0f08-0694-49cd-9298-9a5a584c0c88)
 
@@ -41,7 +41,7 @@ Full list of commands available at: [scaleway/image-tools](https://github.com/sc
 
 On a running instance:
 
-    $ SCRIPT=$(mktemp); curl -s https://raw.githubusercontent.com/scaleway/image-app-wordpress/master/test.bash > $SCRIPT; bash $SCRIPT
+    $ SCRIPT=$(mktemp); curl -s https://raw.githubusercontent.com/scaleway-community/scaleway-wordpress/master/test.bash > $SCRIPT; bash $SCRIPT
 
 
 ---

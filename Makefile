@@ -4,7 +4,7 @@ VERSION =		latest
 VERSION_ALIASES =	4.3 4
 TITLE =			WordPress
 DESCRIPTION =		WordPresswith MySQL
-SOURCE_URL =		https://github.com/scaleway/image-app-wordpress
+SOURCE_URL =		https://github.com/scaleway-community/scaleway-wordpress
 
 IMAGE_VOLUME_SIZE =	50G
 IMAGE_BOOTSCRIPT =	stable
