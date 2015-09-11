@@ -1,5 +1,4 @@
-DOCKER_NAMESPACE =	armbuild/
-NAME =			scw-app-wordpress
+NAME =			wordpress
 VERSION =		latest
 VERSION_ALIASES =	4.3 4
 TITLE =			WordPress

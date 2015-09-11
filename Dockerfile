@@ -1,5 +1,5 @@
-## -*- docker-image-name: "armbuild/scw-app-wordpress:trusty" -*-
-FROM armbuild/scw-distrib-ubuntu:trusty
+## -*- docker-image-name: "scaleway/wordpress:trusty" -*-
+FROM scaleway/ubuntu:trusty
 MAINTAINER Scaleway <opensource@scaleway.com> (@scaleway)
 
 # Prepare rootfs for image-builder
