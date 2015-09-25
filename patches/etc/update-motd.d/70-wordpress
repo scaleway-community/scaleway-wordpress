@@ -5,11 +5,11 @@ PUBLIC_IP=$(oc-metadata --cached PUBLIC_IP_ADDRESS)
 cat <<EOF
 Hi Cloud Rider,
 Welcome to the WordPress image!
-Redmine is installed in /var/www.
+WordPress is installed in /var/www.
 Log into WordPress at http://${PUBLIC_IP}/.
 MySQL is configured for user root with password {mysql_root_password}.
 Your website configuration lies at:
-- /etc/apache2/sites-available/000-default.conf
+- /etc/nginx/sites-available/000-default.conf
 Enjoy!
 EOF
 
