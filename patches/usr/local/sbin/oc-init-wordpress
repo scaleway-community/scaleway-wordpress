@@ -32,7 +32,6 @@ chmod g+s /usr/sbin/postqueue /usr/sbin/postdrop
 
 # Let's install MySQL
 chmod 1777 /tmp
-dpkg-reconfigure mysql-server-5.5
 /etc/init.d/mysql start
 mysqladmin -u root password $MYSQL_ROOT_PASSWORD
 
