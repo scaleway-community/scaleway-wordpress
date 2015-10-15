@@ -28,7 +28,7 @@ RUN apt-get -q update     \
 # Uninstall apache
 RUN apt-get -yq remove apache2
 
-ENV WORDPRESS_VERSION 4.3
+ENV WORDPRESS_VERSION 4.3.1
 
 # Patch rootfs
 ADD ./patches/root/ /root/
