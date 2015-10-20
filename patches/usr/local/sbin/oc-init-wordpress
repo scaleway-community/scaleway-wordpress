@@ -8,6 +8,9 @@ export DEBIAN_FRONTEND=noninteractive
 MYSQL_ROOT_PASSWORD=$(head /dev/urandom -c 512 | sha1sum | awk '// { print $1; }')
 dbname="wordpress"
 
+# Set correct permission to mysql user
+chown -R mysql:mysql /var/lib/mysql
+
 # MOTD & README
 sed -i "s/{mysql_root_password}/$MYSQL_ROOT_PASSWORD/" /etc/update-motd.d/70-wordpress
 sed -i "s/{mysql_root_password}/$MYSQL_ROOT_PASSWORD/" /root/README
