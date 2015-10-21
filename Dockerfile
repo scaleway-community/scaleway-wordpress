@@ -50,7 +50,7 @@ RUN ln -sf /etc/nginx/sites-available/000-default.conf /etc/nginx/sites-enabled/
     rm -f /etc/nginx/sites-enabled/default
 
 RUN /etc/init.d/mysql start \
-  && mysql -u root -e "CREATE DATABASE wordpress;" \
+  && mysql -u root -e "CREATE DATABASE `wordpress` DEFAULT CHARACTER SET `utf8mb4` COLLATE `utf8mb4_unicode_ci`;" \
   && killall mysqld
 
 # Clean rootfs from image-builder
