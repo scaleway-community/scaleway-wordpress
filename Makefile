@@ -1,13 +1,13 @@
 NAME =			wordpress
 VERSION =		latest
-VERSION_ALIASES =	4.3.1 4.3 4
+VERSION_ALIASES =	4.4.0 4.4 4
 TITLE =			WordPress
-DESCRIPTION =		WordPresswith MySQL
+DESCRIPTION =		WordPress with MySQL
 SOURCE_URL =		https://github.com/scaleway-community/scaleway-wordpress
 
 IMAGE_VOLUME_SIZE =	50G
 IMAGE_BOOTSCRIPT =	stable
-IMAGE_NAME =		Wordpress 4.3.1
+IMAGE_NAME =		Wordpress 4.4.0
 
 
 ## Image tools  (https://github.com/scaleway/image-tools)
