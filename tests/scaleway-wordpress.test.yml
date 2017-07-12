@@ -1,0 +1,10 @@
+- system_state: running
+- http: {}
+- service:
+    - mysql
+    - nginx
+    - php7.0-fpm
+- mysql:
+    - db: wordpress
+      query: 'SELECT 42, 3'
+      expect_regex: '^42\t3$'
