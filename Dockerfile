@@ -1,5 +1,13 @@
-## -*- docker-image-name: "scaleway/wordpress:trusty" -*-
-FROM scaleway/ubuntu:trusty
+## -*- docker-image-name: "scaleway/wordpress:xenial" -*-
+FROM scaleway/ubuntu:amd64-xenial
+# following 'FROM' lines are used dynamically thanks do the image-builder
+# which dynamically update the Dockerfile if needed.
+#FROM scaleway/ubuntu:armhf-xenial    # arch=armv7l
+#FROM scaleway/ubuntu:arm64-xenial    # arch=arm64
+#FROM scaleway/ubuntu:i386-xenial     # arch=i386
+#FROM scaleway/ubuntu:mips-xenial     # arch=mips
+
+
 MAINTAINER Scaleway <opensource@scaleway.com> (@scaleway)
 
 # Prepare rootfs for image-builder
@@ -14,13 +22,13 @@ RUN apt-get -q update     \
  && apt-get -q -y upgrade \
  && apt-get install -y -q \
 	mailutils         \
-	mysql-server-5.5  \
-	php5              \
-	php5-cli          \
-	php5-fpm          \
-	php5-gd           \
-	php5-mcrypt       \
-	php5-mysql        \
+	mysql-server-5.7  \
+	php7.0              \
+	php7.0-cli          \
+	php7.0-fpm          \
+	php7.0-gd           \
+	php7.0-mcrypt       \
+	php7.0-mysql        \
 	pwgen             \
 	nginx             \
  && apt-get clean
@@ -28,7 +36,7 @@ RUN apt-get -q update     \
 # Uninstall apache
 RUN apt-get -yq remove apache2
 
-ENV WORDPRESS_VERSION 4.4
+ENV WORDPRESS_VERSION 4.8
 
 # Patch rootfs
 ADD ./patches/root/ /root/
@@ -49,9 +57,9 @@ RUN wget -qO wordpress.tar.gz https://wordpress.org/wordpress-$WORDPRESS_VERSION
 RUN ln -sf /etc/nginx/sites-available/000-default.conf /etc/nginx/sites-enabled/000-default.conf && \
     rm -f /etc/nginx/sites-enabled/default
 
-RUN /etc/init.d/mysql start \
-  && mysql -u root -e 'CREATE DATABASE `wordpress` DEFAULT CHARACTER SET `utf8mb4` COLLATE `utf8mb4_unicode_ci`;' \
-  && killall mysqld
+# Enable the init service. systemctl enable cannot be used as init is not running.
+RUN ln -s /etc/systemd/system/init-wordpress.service /etc/systemd/system/multi-user.target.wants && \
+    ln -s /etc/systemd/system/init-mysql.service /etc/systemd/system/multi-user.target.wants
 
 # Clean rootfs from image-builder
 RUN /usr/local/sbin/builder-leave

@@ -7,7 +7,7 @@ Log into Redmine at http://your-ip/.
 MySQL is configured for user root with password {mysql_root_password}.
 
 Your website configuration lies at:
-- /etc/apache2/sites-available/wordpress
+- /etc/nginx/sites-available/000-default.conf
 Enjoy!
 
 Useful links:
