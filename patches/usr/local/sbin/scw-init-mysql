@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+if [[ "$(uname -p)" = aarch64 ]]; then
+    rm -rf /var/lib/mysql
+    dpkg-reconfigure -plow mysql-server-5.7
+fi
+
+systemctl disable init-mysql

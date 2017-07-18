@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+
+# We need this extra script run ONCE on startup to initialize the
+# database with per-image passwords.
+
+export DEBIAN_FRONTEND=noninteractive
+
+DB_NAME=wordpress
+DB_USER=wordpress
+FULL_DB_USER="'${DB_USER}'@'localhost'"
+DB_PASSWORD=$(head /dev/urandom -c 512 | sha1sum | awk '// { print $1; }')
+
+# create the wordpress db and user
+mysql -u root -e "CREATE DATABASE ${DB_NAME} DEFAULT CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_unicode_ci';"
+mysql -u root -e "CREATE USER ${FULL_DB_USER} IDENTIFIED BY '${DB_PASSWORD}';"
+mysql -u root -e "GRANT ALL PRIVILEGES ON ${DB_NAME} . * TO ${FULL_DB_USER};"
+
+# Set correct permission to mysql user
+chown -R mysql:mysql /var/lib/mysql
+
+# MOTD & README
+sed -i "s/{mysql_root_password}/${DB_PASSWORD}/" /etc/update-motd.d/70-wordpress
+sed -i "s/{mysql_root_password}/${DB_PASSWORD}/" /root/README
+
+# Configure wordpress database
+sed -i "s/define('DB_NAME',.*/define('DB_NAME', '${DB_NAME}');/" /var/www/wp-config.php
+sed -i "s/define('DB_USER',.*/define('DB_USER', '${DB_USER}');/" /var/www/wp-config.php
+sed -i "s/define('DB_PASSWORD',.*/define('DB_PASSWORD', '${DB_PASSWORD}');/" /var/www/wp-config.php
+sed -i "/WP_DEBUG/a\\define('FS_METHOD', 'direct');" /var/www/wp-config.php
+chown -R www-data /var/www/
+
+# Configure postfix
+sed -i "s/mydestination = .*/mydestination = $(/usr/local/bin/scw-metadata --cached ID).pub.cloud.scaleway.com, localhost.localdomain, localhost/g" /etc/postfix/main.cf
+sed -i "s/myhostname = .*/myhostname = $(/usr/local/bin/scw-metadata --cached ID).pub.cloud.scaleway.com/g" /etc/postfix/main.cf
+sed -i "s/inet_interfaces = .*/inet_interfaces = localhost/g" /etc/postfix/main.cf
+
+postfix -c /etc/postfix/ set-permissions
+chown -R root:postdrop /usr/sbin/postqueue
+chown -R root:postdrop /usr/sbin/postdrop
+chmod g+s /usr/sbin/postqueue /usr/sbin/postdrop
+
+# this service is only needed on the first boot
+systemctl disable init-wordpress

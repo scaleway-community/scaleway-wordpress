@@ -1,0 +1,11 @@
+[Unit]
+Description=recreate the potentially corrupted mysql DB on first start
+After=network.target
+Before=mysql.service
+
+[Service]
+ExecStart=/usr/local/sbin/scw-init-mysql
+Type=oneshot
+
+[Install]
+WantedBy=multi-user.target

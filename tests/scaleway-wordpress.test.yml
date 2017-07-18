@@ -1,0 +1,19 @@
+- system_state: running
+- http: {}
+- service:
+    - mysql
+    - nginx
+    - php7.0-fpm
+
+- file:
+    - path: /var/www/wp-config.php
+      mode: 0644
+      user: www-data
+      group: www-data
+      regex: '(username|password|database_name)_here'
+      regex_policy: none
+- mysql:
+    - db: wordpress
+      query: 'SELECT 42, 3'
+      regex: '^42\t3$'
+      regex_policy: all

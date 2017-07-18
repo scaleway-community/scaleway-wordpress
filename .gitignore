@@ -10,3 +10,4 @@ sd*.raw*
 rootfs*
 */*.tar
 */*.built
+tmp-*

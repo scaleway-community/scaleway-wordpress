@@ -1,0 +1,11 @@
+[Unit]
+Description=initialize WordPress on first boot
+Before=nginx.service
+After=mysql.service init-mysql.service
+
+[Service]
+ExecStart=/usr/local/sbin/scw-init-wordpress
+Type=oneshot
+
+[Install]
+WantedBy=multi-user.target
