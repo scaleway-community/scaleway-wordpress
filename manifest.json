@@ -1,0 +1,11 @@
+{
+    "images": {
+        "latest": {
+            "directory": "latest",
+            "architectures": [
+                "arm", "arm64", "x86_64"
+            ],
+            "marketplace-id": "215a50f9-0ba8-4e9c-a4e7-10caf50e3586"
+        }
+    }
+}

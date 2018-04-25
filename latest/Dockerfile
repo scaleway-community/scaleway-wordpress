@@ -1,12 +1,6 @@
 ## -*- docker-image-name: "scaleway/wordpress:xenial" -*-
-FROM scaleway/ubuntu:amd64-xenial
-# following 'FROM' lines are used dynamically thanks do the image-builder
-# which dynamically update the Dockerfile if needed.
-#FROM scaleway/ubuntu:armhf-xenial    # arch=armv7l
-#FROM scaleway/ubuntu:arm64-xenial    # arch=arm64
-#FROM scaleway/ubuntu:i386-xenial     # arch=i386
-#FROM scaleway/ubuntu:mips-xenial     # arch=mips
-
+ARG SCW_ARCH
+FROM scaleway/ubuntu:${SCW_ARCH}-xenial
 
 MAINTAINER Scaleway <opensource@scaleway.com> (@scaleway)
 
@@ -31,21 +25,20 @@ RUN apt-get -q update     \
 	php7.0-mysql        \
 	pwgen             \
 	nginx             \
+  unzip              \
  && apt-get clean
 
 # Uninstall apache
 RUN apt-get -yq remove apache2
 
-ENV WORDPRESS_VERSION 4.8
-
 # Patch rootfs
-ADD ./patches/root/ /root/
-ADD ./patches/etc/ /etc/
-ADD ./patches/usr/local/ /usr/local/
+ADD ./overlay/root/ /root/
+ADD ./overlay/etc/ /etc/
+ADD ./overlay/usr/local/ /usr/local/
 
 # Install WordPress
-RUN wget -qO wordpress.tar.gz https://wordpress.org/wordpress-$WORDPRESS_VERSION.tar.gz && \
-    tar -xzf wordpress.tar.gz && \
+RUN wget -qO wordpress.zip https://wordpress.org/wordpress-latest.zip && \
+    unzip wordpress.zip && \
     rm -rf /var/www && \
     mv wordpress /var/www && \
     rm -f /var/www/wp-config-sample.php && \
