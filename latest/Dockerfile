@@ -1,11 +1,13 @@
 ## -*- docker-image-name: "scaleway/wordpress:xenial" -*-
 ARG SCW_ARCH
-FROM scaleway/ubuntu:${SCW_ARCH}-xenial
+FROM scaleway/ubuntu:${SCW_ARCH}-bionic
 
 MAINTAINER Scaleway <opensource@scaleway.com> (@scaleway)
 
 # Prepare rootfs for image-builder
 RUN /usr/local/sbin/builder-enter
+
+RUN apt-get update && yes | unminimize
 
 # Pre-seeding for postfix
 RUN sudo su root -c "debconf-set-selections <<< \"postfix postfix/main_mailer_type string 'Internet Site'\"" \
@@ -16,13 +18,13 @@ RUN apt-get -q update     \
  && apt-get -q -y upgrade \
  && apt-get install -y -q \
 	mailutils         \
-	mysql-server-5.7  \
-	php7.0              \
-	php7.0-cli          \
-	php7.0-fpm          \
-	php7.0-gd           \
-	php7.0-mcrypt       \
-	php7.0-mysql        \
+	mysql-server-5.*  \
+	php7.[0-9]+         \
+	php7.*-cli          \
+	php7.*-fpm          \
+	php7.*-gd           \
+	php7.*-mysql        \
+	libmcrypt-dev       \
 	pwgen             \
 	nginx             \
   unzip              \
